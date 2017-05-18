@@ -85,10 +85,11 @@ void fuzzBaud(int pin) {
     pinArray[pin].end();
     pinArray[pin].begin(baudArray[i]);
     //fill buffer
-    while (bufSize--) {
+    while (bufSize) {
       while (pinArray[pin].available() > 0) {
         Serial.write(pinArray[pin].read());
       }
+      bufSize-=1
     }
   }
 }
