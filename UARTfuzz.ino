@@ -39,6 +39,7 @@ void setup() {
 void loop() {
   int pin = queryPins();
   fuzzBaud(pin);
+  //finished fuzzing; wait a little bit and start again.
   delay(5000);
 }
 
@@ -85,11 +86,11 @@ void fuzzBaud(int pin) {
     pinArray[pin].end();
     pinArray[pin].begin(baudArray[i]);
     //fill buffer
-    while (bufSize) {
+    while (bufSize>0) {
       while (pinArray[pin].available() > 0) {
         Serial.write(pinArray[pin].read());
+        bufSize-=1;
       }
-      bufSize-=1
     }
   }
 }
