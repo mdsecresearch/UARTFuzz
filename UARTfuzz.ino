@@ -70,9 +70,8 @@ int reportAndAsk(int i) {
   char fuzz = Serial.read();
   Serial.print("[+] ");
   Serial.println(fuzz);
-  //todo ternary operator
-  if (fuzz == 'y') return 1;
-  return 0;
+  fuzz == 'y' ? 1 : 0;
+
 }
 
 //read bytes and present them to the user
